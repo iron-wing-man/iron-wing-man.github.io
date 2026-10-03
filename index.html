@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JennyApps — Independent Mobile & AI Software Studio</title>
+  <meta name="description" content="JennyApps is an independent Android software studio dedicated to crafting privacy-first, local-first mobile applications and intelligent companions. Creator of Marginalia AI.">
+  <meta name="keywords" content="JennyApps, Marginalia AI, Android Developer, Local-First, Reading Companion, AI, Privacy">
+  <meta name="author" content="Jasper / JennyApps">
+  <meta name="google-site-verification" content="google3a91c8967ef0ce93">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://iron-wing-man.github.io/">
+  <meta property="og:title" content="JennyApps — Independent Mobile & AI Software Studio">
+  <meta property="og:description" content="Crafting thoughtful, local-first mobile applications and companion experiences with zero-server tracking.">
+  <meta property="og:image" content="https://iron-wing-man.github.io/assets/images/marginalia-icon.png">
+
+  <link rel="icon" type="image/png" href="assets/images/marginalia-icon.png">
+
+  <style>
+    :root {
+      --bg: #070b14;
+      --surface: #0e1526;
+      --surface-card: rgba(255, 255, 255, 0.035);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(99, 102, 241, 0.5);
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --max-w: 1140px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background glow */
+    .ambient-glow {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 1200px;
+      height: 600px;
+      background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.15) 0%, rgba(6, 182, 212, 0.05) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(7, 11, 20, 0.8);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 750;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-cta {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      color: #ffffff !important;
+      transition: all 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: var(--primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 90px 0 60px 0;
+      text-align: center;
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #a5b4fc;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 24px;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 8px var(--accent-emerald);
+    }
+
+    .hero-title {
+      font-size: 3.4rem;
+      font-weight: 850;
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+      max-width: 900px;
+      margin: 0 auto 20px auto;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #a5b4fc 0%, #6366f1 50%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 36px auto;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 0.98rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 18px rgba(99, 102, 241, 0.4);
+      border: 1px solid transparent;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 6px 24px rgba(99, 102, 241, 0.55);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--surface-card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Banner Showcase */
+    .banner-container {
+      margin: 48px auto 80px auto;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      background: var(--surface);
+      position: relative;
+    }
+
+    .banner-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      max-height: 480px;
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-tag {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 620px;
+      margin: 10px auto 0 auto;
+    }
+
+    /* Flagship Product Card */
+    .app-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 44px;
+      margin-bottom: 72px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .app-card-head {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .app-card-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .app-title-group {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .app-title {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .app-tagline {
+      color: var(--primary-hover);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .app-pkg {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin: 28px 0;
+    }
+
+    .feature-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      transition: all 0.2s ease;
+    }
+
+    .feature-item:hover {
+      border-color: var(--border-focus);
+      background: rgba(255, 255, 255, 0.04);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .feature-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .badge-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .tech-badge {
+      font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    /* Core Values / Studio Philosophy */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .value-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 32px;
+    }
+
+    .value-card h3 {
+      font-size: 1.3rem;
+      font-weight: 750;
+      color: #ffffff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .value-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Developer Account & Verification Section */
+    .verification-card {
+      background: linear-gradient(135deg, rgba(30, 27, 75, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      margin-bottom: 80px;
+    }
+
+    .verification-card h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .verification-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .detail-item {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 16px;
+      border-radius: var(--radius-sm);
+    }
+
+    .detail-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .detail-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffffff;
+      word-break: break-all;
+    }
+
+    .detail-value a {
+      color: #a5b4fc;
+      text-decoration: none;
+    }
+
+    .detail-value a:hover {
+      text-decoration: underline;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      text-align: center;
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 56px 24px;
+      margin-bottom: 80px;
+    }
+
+    .contact-section h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .contact-section p {
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 28px auto;
+      font-size: 1.05rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 44px 0;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    .footer-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.3rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .app-card {
+        padding: 24px;
+      }
+      .verification-card {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand">
+        <img src="assets/images/marginalia-icon.png" alt="JennyApps Logo" class="brand-logo">
+        <span>JennyApps</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#apps">Apps</a></li>
+        <li><a href="#values">Our Values</a></li>
+        <li><a href="#developer">Developer Verification</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="#contact" class="nav-cta">Contact Studio</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="pill-badge">
+        <span class="pill-dot"></span>
+        <span>Google Play Verified Developer Studio</span>
+      </div>
+      <h1 class="hero-title">
+        Crafting Thoughtful, <br><span class="gradient-text">Privacy-First AI Experiences</span>
+      </h1>
+      <p class="hero-subtitle">
+        JennyApps is an independent mobile software studio specializing in local-first Android architectures, zero-server tracking, and context-aware AI reading companions.
+      </p>
+      <div class="hero-actions">
+        <a href="#apps" class="btn btn-primary">Discover Marginalia AI</a>
+        <a href="#developer" class="btn btn-secondary">Developer Credentials</a>
+      </div>
+    </section>
+
+    <!-- Showcase Hero Banner -->
+    <div class="banner-container">
+      <img src="assets/images/hero-banner.jpg" alt="JennyApps and Marginalia AI Ambient Reading Experience" class="banner-img">
+    </div>
+
+    <!-- Featured Application -->
+    <section id="apps">
+      <div class="section-header">
+        <div class="section-tag">Featured Application</div>
+        <h2 class="section-title">Marginalia AI</h2>
+        <p class="section-desc">Cross-Platform In-situ Reading Companion for Digital & Physical Readers</p>
+      </div>
+
+      <div class="app-card">
+        <div class="app-card-head">
+          <img src="assets/images/marginalia-icon.png" alt="Marginalia AI Icon" class="app-card-icon">
+          <div class="app-title-group">
+            <h3 class="app-title">Marginalia AI</h3>
+            <div class="app-tagline">Your Unobtrusive, Anti-Spoiler AI Reading Co-pilot</div>
+            <div class="app-pkg">Package ID: com.jennyapps.marginalia</div>
+          </div>
+          <div>
+            <a href="mailto:jasper.wkuk@gmail.com?subject=Marginalia%20AI%20Inquiry" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">
+              Request Early Access / Inquiry
+            </a>
+          </div>
+        </div>
+
+        <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 24px;">
+          Designed for passionate readers of Kindle, Kobo, Readmoo, PDF, and physical books. Marginalia AI runs alongside your reading workflow as a floating overlay or desk companion, providing contextual enlightenment, deep thematic analysis, and bidirectional voice discussions without breaking your focus.
+        </p>
+
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="feature-icon">🛡️</div>
+            <h4 class="feature-title">Anti-Spoiler Engine</h4>
+            <p class="feature-desc">AI companion knowledge is dynamically grounded strictly up to your active reading page, preventing premature plot spoilers.</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">⚡</div>
+            <h4 class="feature-title">Local-First Storage</h4>
+            <p class="feature-desc">Single source of truth via local Room SQLite. 100% offline available with optional private Google Drive AppData sync.</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">📷</div>
+            <h4 class="feature-title">Ephemeral RAM Capture</h4>
+            <p class="feature-desc">Screen and camera images exist only in volatile RAM for OCR and are immediately destroyed. Zero disk saves, zero persistent tracking.</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">🎙️</div>
+            <h4 class="feature-title">Multimodal Voice HUD</h4>
+            <p class="feature-desc">Fluid hands-free voice dialogue with custom reading personas, low-latency audio transcription, and immediate audio feedback.</p>
+          </div>
+        </div>
+
+        <div class="badge-bar">
+          <span class="tech-badge">Android 10+ (API 35)</span>
+          <span class="tech-badge">Kotlin 2.0</span>
+          <span class="tech-badge">Jetpack Compose</span>
+          <span class="tech-badge">Room SQLite</span>
+          <span class="tech-badge">Google Gemini AI</span>
+          <span class="tech-badge">Zero Central Server DB</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Studio Values -->
+    <section id="values">
+      <div class="section-header">
+        <div class="section-tag">Engineering Ethos</div>
+        <h2 class="section-title">Why We Build Differently</h2>
+        <p class="section-desc">We adhere to three fundamental engineering invariants across every app we release.</p>
+      </div>
+
+      <div class="values-grid">
+        <div class="value-card">
+          <h3>🔒 Privacy Sovereignty</h3>
+          <p>We refuse the ad-driven data-harvesting model. Our applications store personal notes and private records on your personal device or personal cloud storage, never on shared commercial databases.</p>
+        </div>
+
+        <div class="value-card">
+          <h3>🔋 Ephemeral AI Processing</h3>
+          <p>When our apps leverage computer vision or voice STT, media frames are processed ephemerally in RAM and wiped cleanly right after inference. Your physical book pages and device screen remain private.</p>
+        </div>
+
+        <div class="value-card">
+          <h3>🎨 Native Ergonomics</h3>
+          <p>Every interaction is optimized for battery efficiency, minimal latency, and zero distraction. We design tools that fade into the background so you can stay in flow.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Developer Verification & Account Details -->
+    <section id="developer">
+      <div class="verification-card">
+        <h3>🏛️ Google Play Developer Identity & Verification</h3>
+        <p style="color: #cbd5e1; font-size: 0.98rem;">
+          This official website serves as the verified developer portal for <strong>JennyApps</strong> in compliance with Google Play Console Developer Account policies and identity verification standards.
+        </p>
+
+        <div class="verification-details">
+          <div class="detail-item">
+            <div class="detail-label">Developer Brand Name</div>
+            <div class="detail-value">JennyApps</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-label">Lead Developer / Owner</div>
+            <div class="detail-value">Jasper</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-label">Official Developer Domain</div>
+            <div class="detail-value">
+              <a href="https://iron-wing-man.github.io/">iron-wing-man.github.io</a>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-label">Developer Support Email</div>
+            <div class="detail-value">
+              <a href="mailto:jasper.wkuk@gmail.com">jasper.wkuk@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-label">Primary Application</div>
+            <div class="detail-value">com.jennyapps.marginalia</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-label">Google Site Verification</div>
+            <div class="detail-value" style="color: var(--accent-emerald);">Token Active &bull; Verified</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <h2>Get in Touch with JennyApps</h2>
+      <p>Have inquiries regarding beta testing, partnerships, app support, or Google Play developer verification? We welcome your message.</p>
+      <a href="mailto:jasper.wkuk@gmail.com" class="btn btn-primary">Email Support &bull; jasper.wkuk@gmail.com</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-wrapper">
+      <div>
+        <strong>JennyApps</strong> &bull; Independent Android App Studio &copy; 2026. All rights reserved.
+      </div>
+      <ul class="footer-links">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="mailto:jasper.wkuk@gmail.com">Support</a></li>
+        <li><a href="https://github.com/iron-wing-man/iron-wing-man.github.io" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
