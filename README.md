@@ -1,38 +1,41 @@
-# iron-wing-man — Developer Website (`iron-wing-man.github.io`)
+# iron-wing-man.github.io
 
-Official developer portal and verification website for **iron-wing-man** on Google Play Console (`com.iron-wing-man.marginalia`).
+Personal website of **Jasper (@iron-wing-man)** and official developer portal for **JennyApps** (`com.jennyapps.marginalia`).
 
-Hosted live at: **[https://iron-wing-man.github.io/](https://iron-wing-man.github.io/)**
-
----
-
-## 📋 Overview & Purpose
-
-This repository hosts the static website serving as the official **Developer Website (網站)** for the Google Play Developer Account **iron-wing-man**, complying with Google Play identity and merchant verification requirements:
-
-1. **Developer Identity & Presentation**: Transparent developer details (Studio name: iron-wing-man, Lead Developer: Jasper, Contact: `jasper.wkuk@gmail.com`).
-2. **Flagship Application**: Detailed showcase of **Marginalia AI** (`com.iron-wing-man.marginalia`), an Android AI reading companion designed with a Local-First and ephemeral RAM capture architecture.
-3. **Mandatory Legal Pages**:
-   - [Privacy Policy (`privacy.html`)](https://iron-wing-man.github.io/privacy.html) — Comprehensive disclosure of ephemeral camera/RAM OCR processing, local SQLite storage, Google Drive AppData sync, and zero central database tracking.
-   - [Terms of Service (`terms.html`)](https://iron-wing-man.github.io/terms.html) — Standard terms for mobile application usage and Google Play billing.
-4. **Domain & Identity Verification**: Preserves Google site verification (`google3a91c8967ef0ce93.html` and meta tag).
+Live URL: **[https://iron-wing-man.github.io/](https://iron-wing-man.github.io/)**
 
 ---
 
-## 🗂️ File Structure
+## 🧭 Site Hierarchy & Routing
+
+| URL Path | Purpose | Description |
+| :--- | :--- | :--- |
+| **`/`** | **Personal Home** | Portfolio & bio for Jasper (@iron-wing-man), highlighting local-first systems, native mobile engineering, and projects. |
+| **`/jennyapps/`** | **JennyApps Developer Portal** | Official Google Play Console Developer Website (`網站`) showcasing **Marginalia AI** (`com.jennyapps.marginalia`). |
+| **`/jennyapps/privacy.html`** | **Privacy Policy** | Google Play Data Safety compliant privacy policy detailing ephemeral RAM capture, local Room SQLite, and Google Drive AppData sync. |
+| **`/jennyapps/terms.html`** | **Terms of Service** | Terms of service for JennyApps mobile applications and Google Play subscriptions. |
+| **`/google3a91c8967ef0ce93.html`** | **Google Site Verification** | Root domain ownership verification token for Google Search Console and Google Play Console. |
+
+---
+
+## 🗂️ Repository Structure
 
 ```text
 iron-wing-man.github.io/
-├── index.html                  # Developer home page & Marginalia AI showcase
-├── privacy.html                # Google Play compliant Privacy Policy
-├── terms.html                  # Terms of Service
-├── google3a91c8967ef0ce93.html # Google Search Console / Play Console site verification
-├── .nojekyll                   # Bypasses Jekyll processing for standard HTML
+├── index.html                   # Personal Home (Jasper / @iron-wing-man)
+├── google3a91c8967ef0ce93.html  # Google domain verification
+├── .nojekyll                    # Disables Jekyll processing
 ├── assets/
 │   └── images/
-│       ├── marginalia-icon.png # 1024x1024 app icon
-│       ├── marginalia-icon.svg # Vector app icon
-│       └── hero-banner.jpg     # AI reading companion hero banner
+│       ├── marginalia-icon.png  # 1024x1024 App Icon
+│       ├── marginalia-icon.svg  # Vector Icon
+│       └── hero-banner.jpg      # Reading Companion Hero Illustration
+├── jennyapps/
+│   ├── index.html               # Developer Portal & Marginalia AI showcase
+│   ├── privacy.html             # Privacy Policy
+│   └── terms.html               # Terms of Service
+├── privacy.html                 # Canonical redirect -> /jennyapps/privacy.html
+├── terms.html                   # Canonical redirect -> /jennyapps/terms.html
 └── README.md
 ```
 
@@ -40,4 +43,4 @@ iron-wing-man.github.io/
 
 ## 🚀 Deployment
 
-Changes pushed to the `main` branch are automatically deployed by GitHub Pages.
+Hosted on GitHub Pages. Any commits pushed to `main` are automatically published worldwide.
