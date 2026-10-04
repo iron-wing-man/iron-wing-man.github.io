@@ -1,8 +1,8 @@
-# JennyApps — Developer Website (`iron-wing-man.github.io`)
+# JennyApps — Developer Website (`jennyapps.github.io`)
 
 Official developer portal and verification website for **JennyApps** on Google Play Console (`com.jennyapps.marginalia`).
 
-Hosted live at: **[https://iron-wing-man.github.io/](https://iron-wing-man.github.io/)**
+Hosted live at: **[https://jennyapps.github.io/](https://jennyapps.github.io/)**
 
 ---
 
@@ -13,8 +13,8 @@ This repository hosts the static website serving as the official **Developer Web
 1. **Developer Identity & Presentation**: Transparent developer details (Studio name: JennyApps, Lead Developer: Jasper, Contact: `jasper.wkuk@gmail.com`).
 2. **Flagship Application**: Detailed showcase of **Marginalia AI** (`com.jennyapps.marginalia`), an Android AI reading companion designed with a Local-First and ephemeral RAM capture architecture.
 3. **Mandatory Legal Pages**:
-   - [Privacy Policy (`privacy.html`)](https://iron-wing-man.github.io/privacy.html) — Comprehensive disclosure of ephemeral camera/RAM OCR processing, local SQLite storage, Google Drive AppData sync, and zero central database tracking.
-   - [Terms of Service (`terms.html`)](https://iron-wing-man.github.io/terms.html) — Standard terms for mobile application usage and Google Play billing.
+   - [Privacy Policy (`privacy.html`)](https://jennyapps.github.io/privacy.html) — Comprehensive disclosure of ephemeral camera/RAM OCR processing, local SQLite storage, Google Drive AppData sync, and zero central database tracking.
+   - [Terms of Service (`terms.html`)](https://jennyapps.github.io/terms.html) — Standard terms for mobile application usage and Google Play billing.
 4. **Domain & Identity Verification**: Preserves Google site verification (`google3a91c8967ef0ce93.html` and meta tag).
 
 ---
@@ -22,7 +22,7 @@ This repository hosts the static website serving as the official **Developer Web
 ## 🗂️ File Structure
 
 ```text
-iron-wing-man.github.io/
+jennyapps.github.io/
 ├── index.html                  # Developer home page & Marginalia AI showcase
 ├── privacy.html                # Google Play compliant Privacy Policy
 ├── terms.html                  # Terms of Service
